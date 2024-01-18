@@ -46,7 +46,7 @@ namespace Manga.Controllers
 
         }
 
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public async Task<ActionResult<string>> UpdateCharacter([FromForm] EditCharacterViewModel editCharacterViewModel)
         {
             var character = _autoMapper.Map<Character>(editCharacterViewModel);
