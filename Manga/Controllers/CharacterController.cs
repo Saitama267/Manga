@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using Manga.Models;
-using Manga.Service.CharacterServise;
 using Manga.ViewModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Manga_BLL.Entities;
+using Manga_BLL.Service.CharacterServise;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Manga.Controllers
 {
@@ -44,7 +41,7 @@ namespace Manga.Controllers
             return Ok($"Character with id({result}) added!");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<string>> DeleteCharacter(int id)
         {
             var characterId = await _characterService.DeleteCharacter(id);
@@ -56,14 +53,14 @@ namespace Manga.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult<string>> UpdateCharacter([FromForm] EditCharacterViewModel editCharacterViewModel)
         {
             var character = _autoMapper.Map<Character>(editCharacterViewModel);
             var characterId = await _characterService.UpdateCharacter(character);
             if (characterId != 0)
             {
-                return Ok($"Character with id({characterId}) deleted!");
+                return Ok($"Character with changed!");
             }
             return BadRequest();
         }

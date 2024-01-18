@@ -1,8 +1,9 @@
-﻿
-using Manga.Models;
+﻿using Manga_BLL.Entities;
+using Manga_BLL.Repository.CharacterRepository;
+using Manga_DAL.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace Manga.Repository.CharacterRepository
+namespace Manga_DAL.Repository.CharacterRepository
 {
     public class CharacterRepository : ICharacterRepository
     {
@@ -21,7 +22,7 @@ namespace Manga.Repository.CharacterRepository
 
         public async Task<int> DeleteCharacter(int id)
         {
-            var product = await _dbContext.Characters.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var product = await _dbContext.Characters.FirstOrDefaultAsync(c => c.Id == id);
             if (product != null)
             {
                 _dbContext.Characters.Remove(product);
@@ -43,18 +44,17 @@ namespace Manga.Repository.CharacterRepository
 
         public async Task<int> UpdateCharacter(Character character)
         {
-            var updateCharacter = await _dbContext.Characters.Where(c => c.Id == character.Id).FirstAsync();
-
-            foreach (var toCharacter in typeof(Character).GetProperties())
+            if (character is null )
             {
-                var fromCharacter = typeof(Character).GetProperty(toCharacter.Name);
-                var value = fromCharacter.GetValue(character, null);
-                if (value != null)
-                {
-                    toCharacter.SetValue(updateCharacter, value, null);
-                }
-
+                throw new ArgumentNullException();
             }
+            var updateCharacter = await _dbContext.Characters.SingleAsync(c => c.Id == character.Id);
+
+            updateCharacter.IsOngoing = character.IsOngoing; 
+            updateCharacter.MangaGenre = character.MangaGenre;
+            updateCharacter.Name = character.Name;  
+            updateCharacter.Author = character.Author;
+            updateCharacter.Feature = character.Feature;
 
             await _dbContext.SaveChangesAsync();
             return character.Id;

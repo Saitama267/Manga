@@ -1,6 +1,6 @@
-﻿using Manga.Models;
+﻿using Manga_BLL.Entities;
 
-namespace Manga.Repository.CharacterRepository
+namespace Manga_BLL.Repository.CharacterRepository
 {
     public interface ICharacterRepository
     {

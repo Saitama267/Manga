@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Manga.DTOs;
-using Manga.Models;
-using Manga.Repository.CharacterRepository;
+using Manga_BLL.DTOs;
+using Manga_BLL.Entities;
+using Manga_BLL.Repository.CharacterRepository;
 
-namespace Manga.Service.CharacterServise
+namespace Manga_BLL.Service.CharacterServise
 {
     public class CharacterService : ICharacterService
     {
@@ -17,8 +17,7 @@ namespace Manga.Service.CharacterServise
         }
         public async Task<int> AddCharacter(Character character)
         {
-            var addedCharacterId = await _characterRepository.AddCharacter(character);
-            return addedCharacterId != 0 ? addedCharacterId : 0;
+            return await _characterRepository.AddCharacter(character);
         }
 
         public async Task<int> DeleteCharacter(int id)

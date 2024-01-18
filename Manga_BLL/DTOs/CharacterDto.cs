@@ -1,4 +1,4 @@
-﻿namespace Manga.DTOs
+﻿namespace Manga_BLL.DTOs
 {
     public class CharacterDto
     {

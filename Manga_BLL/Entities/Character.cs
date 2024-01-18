@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Manga.Models;
+namespace Manga_BLL.Entities;
 
 public partial class Character
 {
@@ -16,8 +16,6 @@ public partial class Character
     public bool? IsOngoing { get; set; }
 
     public string? Author { get; set; }
-
-    public int? FeatureId { get; set; }
 
     public virtual Feature? Feature { get; set; }
 }

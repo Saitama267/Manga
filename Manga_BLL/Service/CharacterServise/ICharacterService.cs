@@ -1,7 +1,7 @@
-﻿using Manga.DTOs;
-using Manga.Models;
+﻿using Manga_BLL.DTOs;
+using Manga_BLL.Entities;
 
-namespace Manga.Service.CharacterServise
+namespace Manga_BLL.Service.CharacterServise
 {
     public interface ICharacterService
     {

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Manga.DTOs;
-using Manga.Models;
 using Manga.ViewModels;
+using Manga_BLL.DTOs;
+using Manga_BLL.Entities;
 
-namespace Manga.Mapping
+namespace Manga_PL.Mapping
 {
-    public class AutoMapper : Profile
+    public class CharacterProfile : Profile
     {
-        public AutoMapper()
+        public CharacterProfile()
         {
             CreateMap<Character, CharacterDto>();
             CreateMap<CharacterDto, CharacterViewModel>();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Manga.Models;
+namespace Manga_BLL.Entities;
 
 public partial class Feature
 {
@@ -13,5 +13,5 @@ public partial class Feature
 
     public DateTime? DateDisappear { get; set; }
 
-    public virtual ICollection<Character> Characters { get; set; } = new List<Character>();
+    public virtual Character IdNavigation { get; set; } = null!;
 }
