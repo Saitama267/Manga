@@ -1,9 +1,9 @@
 ﻿using Manga_BLL.Entities;
-using Manga_BLL.Repository.CharacterRepository;
+using Manga_BLL.Repository;
 using Manga_DAL.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace Manga_DAL.Repository.CharacterRepository
+namespace Manga_DAL.Repositories
 {
     public class CharacterRepository : ICharacterRepository
     {
@@ -32,15 +32,15 @@ namespace Manga_DAL.Repository.CharacterRepository
             return 0;
         }
 
-        public async Task<List<Character>> GetAllCharacters()
+        public async Task<List<Character>> GetAllCharacters(bool? isOngoing)
         {
+            if (isOngoing!=null)
+            {
+                return await _dbContext.Characters.Where(c => c.IsOngoing == isOngoing).ToListAsync();
+            }
             return await _dbContext.Characters.ToListAsync();
         }
 
-        public async Task<List<Character>> GetAllOngoingCharacters(bool isOngoing)
-        {
-            return await _dbContext.Characters.Where(c => c.IsOngoing == isOngoing).ToListAsync();
-        }
 
         public async Task<int> UpdateCharacter(Character character)
         {

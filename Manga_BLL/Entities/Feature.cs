@@ -13,5 +13,5 @@ public partial class Feature
 
     public DateTime? DateDisappear { get; set; }
 
-    public virtual Character IdNavigation { get; set; } = null!;
+    public virtual Character Character { get; set; } = null!;
 }

@@ -37,7 +37,7 @@ public partial class MangaDbContext : DbContext
             entity.Property(e => e.DateDisappear).HasColumnType("date");
             entity.Property(e => e.Description).HasMaxLength(50);
 
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Feature)
+            entity.HasOne(d => d.Character).WithOne(p => p.Feature)
                 .HasForeignKey<Feature>(d => d.Id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Features_Characters");

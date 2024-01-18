@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Manga.ViewModels;
 using Manga_BLL.Entities;
 using Manga_BLL.Service.CharacterServise;
+using Manga_PL.ViewModels.Character;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manga.Controllers
@@ -19,17 +19,10 @@ namespace Manga.Controllers
             _characterService = characterService;
         }
 
-        [HttpGet("characters")]
-        public async Task<ActionResult<List<CharacterViewModel>>> GetAllCharacters()
+        [HttpGet]
+        public async Task<ActionResult<List<CharacterViewModel>>> GetAllCharacters(bool? isOngoing)
         {
-            var result = await _characterService.GetAllCharacters();
-            return _autoMapper.Map<List<CharacterViewModel>>(result);
-        }
-
-        [HttpGet("filtered")]
-        public async Task<ActionResult<List<CharacterViewModel>>> GetAllCharacterByOngoing(bool isOngoing)
-        {
-            var result = await _characterService.GetAllOngoingCharacters(isOngoing);
+            var result = await _characterService.GetAllCharacters(isOngoing);
             return _autoMapper.Map<List<CharacterViewModel>>(result);
         }
 

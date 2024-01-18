@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Manga_BLL.DTOs;
 using Manga_BLL.Entities;
-using Manga_BLL.Repository.CharacterRepository;
+using Manga_BLL.Repository;
 
 namespace Manga_BLL.Service.CharacterServise
 {
@@ -25,17 +25,12 @@ namespace Manga_BLL.Service.CharacterServise
             return await _characterRepository.DeleteCharacter(id);
         }
 
-        public async Task<List<CharacterDto>> GetAllCharacters()
+        public async Task<List<CharacterDto>> GetAllCharacters(bool? isOngoing)
         {
-            var result = await _characterRepository.GetAllCharacters();
+            var result = await _characterRepository.GetAllCharacters(isOngoing);
             return _autoMapper.Map<List<CharacterDto>>(result);
         }
 
-        public async Task<List<CharacterDto>> GetAllOngoingCharacters(bool isOngoing)
-        {
-            var result = await _characterRepository.GetAllOngoingCharacters(isOngoing);
-            return _autoMapper.Map<List<CharacterDto>>(result);
-        }
 
         public async Task<int> UpdateCharacter(Character character)
         {

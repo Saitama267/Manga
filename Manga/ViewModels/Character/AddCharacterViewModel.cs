@@ -1,4 +1,4 @@
-﻿namespace Manga.ViewModels
+﻿namespace Manga_PL.ViewModels.Character
 {
     public class AddCharacterViewModel
     {

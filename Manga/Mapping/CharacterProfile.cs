@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Manga.ViewModels;
 using Manga_BLL.DTOs;
 using Manga_BLL.Entities;
+using Manga_PL.ViewModels.Character;
 
 namespace Manga_PL.Mapping
 {
